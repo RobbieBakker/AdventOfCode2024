@@ -16,49 +16,13 @@ namespace _2_dec
             //int safe = puzzle1();
             int safe = puzzle2();
             Console.WriteLine(safe);
-            Console.ReadLine();
+            //Console.ReadLine();
 
         }
 
         static int puzzle1()
         {
             int safe = 0;
-            foreach (var line in allLines)
-            {
-                bool isUnsafe = false;
-                bool isAsc = false;
-                var numbers = line.Split(' ')?.Select(Int32.Parse).ToList();
-
-                if (numbers[0] < numbers[1])
-                {
-                    isAsc = true;
-                }
-
-                for (int i = 0; i < numbers.Count - 1; i++)
-                {
-                    if (Math.Abs(numbers[i] - numbers[i + 1]) < 1 || Math.Abs(numbers[i] - numbers[i + 1]) > 3)
-                    {
-                        isUnsafe = true;
-                        break;
-                    }
-                    if (isAsc == true && numbers[i] > numbers[i +1] || isAsc == false && numbers[i] < numbers[i+1])
-                    {
-                        isUnsafe = true;
-                        break;
-                    }
-                }
-                if (!isUnsafe)
-                {
-                    safe++;
-                }
-            }
-            return safe;
-        }
-
-        static int puzzle2()
-        {
-            int safe = 0;
-            int z = 0;
             foreach (var line in allLines)
             {
                 bool isSafe = true;
@@ -71,13 +35,40 @@ namespace _2_dec
                 }
 
                 isSafe = checkSafety(numbers, isAsc);
+
+                if (isSafe)
+                {
+                    safe++;
+                }
+            }
+            return safe;
+        }
+
+        static int puzzle2()
+        {
+            int safe = 0;
+            foreach (var line in allLines)
+            {
+                bool isSafe = true;
+                bool isAsc = false;
+                var numbers = line.Split(' ')?.Select(Int32.Parse).ToList();
+
+                isSafe = checkSafety(numbers, isAsc);
+
                 if (!isSafe)
                 {
                     for (int i = 0; i < numbers.Count; i++)
                     {
                         List<int> numberVariation = numbers.ToList();
                         numberVariation.RemoveAt(i);
+
+                        if (numberVariation[0] < numberVariation[1])
+                        {
+                            isAsc = true;
+                        }
+
                         isSafe = checkSafety(numberVariation, isAsc);
+
                         if (isSafe)
                         {
                             break;
@@ -103,10 +94,14 @@ namespace _2_dec
                     isSafe = false;
                     break;
                 }
-                if (isAsc == true && numbers[i] > numbers[i + 1] || isAsc == false && numbers[i] < numbers[i + 1])
+                else if (isAsc == true && numbers[i] > numbers[i + 1] || isAsc == false && numbers[i] < numbers[i + 1])
                 {
                     isSafe = false;
                     break;
+                }
+                else
+                {
+                    isSafe = true;
                 }
             }
             return isSafe;
@@ -118,7 +113,7 @@ namespace _2_dec
             try
             {
                 //Pass the file path and file name to the StreamReader constructor
-                StreamReader sr = new StreamReader("C:\\Users\\bakr\\OneDrive - Driestar-Wartburg\\Documents\\GitHub\\AdventOfCode2024\\2 dec\\2 dec\\input2.txt");
+                StreamReader sr = new StreamReader("C:\\Users\\Robin\\Documents\\GitHub\\AdventOfCode2024\\2 dec\\2 dec\\input.txt");
                 //Read the first line of text
                 line = sr.ReadLine();
                 //Continue to read until you reach end of file

@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\bakr\\OneDrive - Driestar-Wartburg\\Documents\\GitHub\\AdventOfCode2024\\2 dec\\2 dec\\",
+  "WorkspaceRootPath": "C:\\Users\\Robin\\Documents\\GitHub\\AdventOfCode2024\\2 dec\\2 dec\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4C12CA58-2896-47E3-BC0A-A2D9FC4F9E9C}|2 dec\\2 dec.csproj|c:\\users\\bakr\\onedrive - driestar-wartburg\\documents\\github\\adventofcode2024\\2 dec\\2 dec\\2 dec\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4C12CA58-2896-47E3-BC0A-A2D9FC4F9E9C}|2 dec\\2 dec.csproj|c:\\users\\robin\\documents\\github\\adventofcode2024\\2 dec\\2 dec\\2 dec\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4C12CA58-2896-47E3-BC0A-A2D9FC4F9E9C}|2 dec\\2 dec.csproj|solutionrelative:2 dec\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -24,11 +24,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\bakr\\OneDrive - Driestar-Wartburg\\Documents\\GitHub\\AdventOfCode2024\\2 dec\\2 dec\\2 dec\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\Robin\\Documents\\GitHub\\AdventOfCode2024\\2 dec\\2 dec\\2 dec\\Program.cs",
               "RelativeDocumentMoniker": "2 dec\\Program.cs",
-              "ToolTip": "C:\\Users\\bakr\\OneDrive - Driestar-Wartburg\\Documents\\GitHub\\AdventOfCode2024\\2 dec\\2 dec\\2 dec\\Program.cs",
-              "RelativeToolTip": "2 dec\\Program.cs",
-              "ViewState": "AgIAAF0AAAAAAAAAAADgv2MAAAAMAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Robin\\Documents\\GitHub\\AdventOfCode2024\\2 dec\\2 dec\\2 dec\\Program.cs*",
+              "RelativeToolTip": "2 dec\\Program.cs*",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAowDUAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-02T09:24:29.294Z",
               "EditorCaption": ""
