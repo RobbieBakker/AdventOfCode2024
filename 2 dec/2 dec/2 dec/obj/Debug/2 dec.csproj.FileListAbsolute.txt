@@ -1,0 +1,7 @@
+C:\Users\bakr\OneDrive - Driestar-Wartburg\Documents\GitHub\AdventOfCode2024\2 dec\2 dec\2 dec\bin\Debug\2 dec.exe.config
+C:\Users\bakr\OneDrive - Driestar-Wartburg\Documents\GitHub\AdventOfCode2024\2 dec\2 dec\2 dec\bin\Debug\2 dec.exe
+C:\Users\bakr\OneDrive - Driestar-Wartburg\Documents\GitHub\AdventOfCode2024\2 dec\2 dec\2 dec\bin\Debug\2 dec.pdb
+C:\Users\bakr\OneDrive - Driestar-Wartburg\Documents\GitHub\AdventOfCode2024\2 dec\2 dec\2 dec\obj\Debug\2 dec.csproj.AssemblyReference.cache
+C:\Users\bakr\OneDrive - Driestar-Wartburg\Documents\GitHub\AdventOfCode2024\2 dec\2 dec\2 dec\obj\Debug\2 dec.csproj.CoreCompileInputs.cache
+C:\Users\bakr\OneDrive - Driestar-Wartburg\Documents\GitHub\AdventOfCode2024\2 dec\2 dec\2 dec\obj\Debug\2 dec.exe
+C:\Users\bakr\OneDrive - Driestar-Wartburg\Documents\GitHub\AdventOfCode2024\2 dec\2 dec\2 dec\obj\Debug\2 dec.pdb
