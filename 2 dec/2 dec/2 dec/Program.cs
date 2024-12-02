@@ -26,15 +26,9 @@ namespace _2_dec
             foreach (var line in allLines)
             {
                 bool isSafe = true;
-                bool isAsc = false;
                 var numbers = line.Split(' ')?.Select(Int32.Parse).ToList();
 
-                if (numbers[0] < numbers[1])
-                {
-                    isAsc = true;
-                }
-
-                isSafe = checkSafety(numbers, isAsc);
+                isSafe = checkSafety(numbers);
 
                 if (isSafe)
                 {
@@ -49,11 +43,10 @@ namespace _2_dec
             int safe = 0;
             foreach (var line in allLines)
             {
-                bool isSafe = true;
-                bool isAsc = false;
-                var numbers = line.Split(' ')?.Select(Int32.Parse).ToList();
+                bool isSafe;
+                List<int> numbers = line.Split(' ')?.Select(Int32.Parse).ToList();
 
-                isSafe = checkSafety(numbers, isAsc);
+                isSafe = checkSafety(numbers);
 
                 if (!isSafe)
                 {
@@ -62,31 +55,35 @@ namespace _2_dec
                         List<int> numberVariation = numbers.ToList();
                         numberVariation.RemoveAt(i);
 
-                        if (numberVariation[0] < numberVariation[1])
-                        {
-                            isAsc = true;
-                        }
-
-                        isSafe = checkSafety(numberVariation, isAsc);
+                        isSafe = checkSafety(numberVariation);
 
                         if (isSafe)
                         {
+                            safe++;
                             break;
                         }
                     }
                 }
-                if (isSafe)
+                else
                 {
                     safe++;
                 }
-                Console.WriteLine(isSafe);
             }
             return safe;
         }
 
-        static bool checkSafety(List<int> numbers, bool isAsc)
+        static bool checkSafety(List<int> numbers)
         {
             bool isSafe = true;
+            bool isAsc = false;
+            if (numbers[0] < numbers[1])
+            {
+                isAsc = true;
+            }
+            else
+            {
+                isAsc = false;
+            }
             for (int i = 0; i < numbers.Count - 1; i++)
             {
                 if (Math.Abs(numbers[i] - numbers[i + 1]) < 1 || Math.Abs(numbers[i] - numbers[i + 1]) > 3)
