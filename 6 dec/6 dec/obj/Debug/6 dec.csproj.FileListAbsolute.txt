@@ -1,0 +1,7 @@
+C:\Users\Robin\Documents\GitHub\AdventOfCode2024\6 dec\6 dec\bin\Debug\6 dec.exe.config
+C:\Users\Robin\Documents\GitHub\AdventOfCode2024\6 dec\6 dec\bin\Debug\6 dec.exe
+C:\Users\Robin\Documents\GitHub\AdventOfCode2024\6 dec\6 dec\bin\Debug\6 dec.pdb
+C:\Users\Robin\Documents\GitHub\AdventOfCode2024\6 dec\6 dec\obj\Debug\6 dec.csproj.AssemblyReference.cache
+C:\Users\Robin\Documents\GitHub\AdventOfCode2024\6 dec\6 dec\obj\Debug\6 dec.csproj.CoreCompileInputs.cache
+C:\Users\Robin\Documents\GitHub\AdventOfCode2024\6 dec\6 dec\obj\Debug\6 dec.exe
+C:\Users\Robin\Documents\GitHub\AdventOfCode2024\6 dec\6 dec\obj\Debug\6 dec.pdb
