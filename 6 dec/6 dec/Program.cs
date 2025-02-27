@@ -12,28 +12,18 @@ namespace _6_dec
     internal class Program
     {
         static char[,] matrixArray;
-        static int[] coord = new int[2];
-        static int[] startingPosition = new int[2];
-        static int directionIndex = 0;
-        static int[] direction = new int[2];
+        static byte[] coord = new byte[2];
+        static byte[] startingPosition = new byte[2];
+        static byte directionIndex = 0;
+        static sbyte[] direction = new sbyte[2];
         static int obstacleCount = 0;
-        static HashSet<((int, int), int)> visitedPostions = new HashSet<((int, int), int)>();
-        static HashSet<((int, int), int)> test = new HashSet<((int, int), int)>();
+        static HashSet<((byte, byte), byte)> visitedPostions = new HashSet<((byte, byte), byte)>();
         static void Main(string[] args)
         {
             var watch = Stopwatch.StartNew(); // Set stopwatch for tracking execution time in ms
             setup();
-            test.Add(((6,4),0));
-            if (!test.Contains(((6, 4), 0)))
-            {
-                Console.WriteLine("didn't contain");
-            }
-            else
-            {
-                Console.WriteLine("Did contain");
-            }
 
-                getStartingPos();
+            getStartingPos();
             //puzzle1();
             puzzle2();
 
@@ -51,19 +41,15 @@ namespace _6_dec
 
         static void puzzle2()
         {
-            matrixArray[6, 3] = '#';
-            List<List<string>> tmpMatrix = new List<List<string>>();
-            for (int y=0; y< matrixArray.GetLength(0); y++)
+            for (byte y=0; y< matrixArray.GetLength(0); y++)
             {
-                for(int x=0; x< matrixArray.GetLength(1); x++)
+                for(byte x=0; x< matrixArray.GetLength(1); x++)
                 {
-                    coord = startingPosition.ToArray();
-                    matrixArray[coord[0], coord[1]] = '^';
                     if (!matrixArray[y, x].Equals('#') && (y != coord[0] || x != coord[1]))
                     {
                         matrixArray[y, x] = '#';
 
-                        Console.WriteLine("Amended coord: " + y + ", " + x);
+                        //Console.WriteLine("Amended coord: " + y + ", " + x);
 
                         if (move2())
                         {
@@ -72,7 +58,10 @@ namespace _6_dec
                         matrixArray[y, x] = '.';
                         matrixArray[coord[0], coord[1]] = '.';
                         visitedPostions.Clear();
+                        coord = startingPosition.ToArray();
                         directionIndex = 0;
+                        direction = new sbyte[2] { -1, 0 };
+                        matrixArray[coord[0], coord[1]] = '^';
                     }
                 }
             }
@@ -84,10 +73,10 @@ namespace _6_dec
             while (true)
             {
                 // Check next position
-                int oldY = coord[0];
-                int oldX = coord[1];
-                int nextY = coord[0] + direction[0];
-                int nextX = coord[1] + direction[1];
+                byte oldY = coord[0];
+                byte oldX = coord[1];
+                byte nextY = (byte)(coord[0] + direction[0]);
+                byte nextX = (byte)(coord[1] + direction[1]);
                 try
                 {
                     if (!matrixArray[nextY, nextX].Equals('#'))
@@ -120,10 +109,10 @@ namespace _6_dec
             while (true)
             {
                 // Check next position
-                int oldY = coord[0];
-                int oldX = coord[1];
-                int nextY = (coord[0] + direction[0]);
-                int nextX = (coord[1] + direction[1]);
+                byte oldY = coord[0];
+                byte oldX = coord[1];
+                byte nextY = (byte)(coord[0] + direction[0]);
+                byte nextX = (byte)(coord[1] + direction[1]);
                 try
                 {
                     if (!matrixArray[nextY, nextX].Equals('#'))
@@ -165,15 +154,15 @@ namespace _6_dec
 
         static void getStartingPos()
         {
-            direction = new int[2] { -1, 0 };
+            direction = new sbyte[2] { -1, 0 };
             directionIndex = 0;
-            for (int y = 0; y < matrixArray.GetLength(0); y++)
+            for (byte y = 0; y < matrixArray.GetLength(0); y++)
             {
-                for (int x = 0; x < matrixArray.GetLength(1); x++)
+                for (byte x = 0; x < matrixArray.GetLength(1); x++)
                 {
                     if (matrixArray[y, x].Equals('^'))
                     {
-                        startingPosition = new[] { y,x };
+                        startingPosition = new byte[] { y,x };
                         return;
                     }
                 }
@@ -182,7 +171,7 @@ namespace _6_dec
 
         static void changeDirection()
         {
-            int[,] directions = { { -1, 0 }, { 0, 1 }, { 1, 0 }, { 0, -1 } };
+            sbyte[,] directions = { { -1, 0 }, { 0, 1 }, { 1, 0 }, { 0, -1 } };
             if (directionIndex < 3)
             {
                 directionIndex += 1;
@@ -197,7 +186,7 @@ namespace _6_dec
 
         static void setup()
         {
-            string[] lines = File.ReadAllLines("C:\\Users\\Robin\\Documents\\GitHub\\AdventOfCode2024\\6 dec\\example.txt");
+            string[] lines = File.ReadAllLines("C:\\Users\\Robin\\Documents\\GitHub\\AdventOfCode2024\\6 dec\\input.txt");
             int rows = lines.Length;
             int cols = lines[0].Length;
             matrixArray = new char[rows,cols];

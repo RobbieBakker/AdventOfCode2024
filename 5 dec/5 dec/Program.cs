@@ -10,13 +10,13 @@ namespace _5_dec
 {
     internal class Program
     {
-        static int[,] order;
+        static int[,] order = new int[1176, 2];
         static List<List<int>> updates = new List<List<int>>();
         static void Main(string[] args)
         {
-            setup();
             var watch = Stopwatch.StartNew(); // Set stopwatch for tracking execution time in ms
 
+            setup();
             //Console.WriteLine(puzzle1());
             Console.WriteLine(puzzle2());
 
@@ -27,17 +27,16 @@ namespace _5_dec
         // Puzzle 1 asks for the correct updates and return the sum of the middle values.
         static int puzzle1()
         {
-            List<List<int>> correctUpdates = new List<List<int>>();
-            correctUpdates = getCorrectUpdates();
-            return sumMiddleItems(correctUpdates);
+            return getCorrectUpdates();
+            //return sumMiddleItems(correctUpdates);
         }
 
         // Puzzle 2 asks for the wrong updates, sorting them into the correct order and return the sum of the middle values.
         static int puzzle2()
         {
             List<List<int>> wrongUpdates = getWrongUpdates();
-            wrongUpdates = orderList(wrongUpdates);
-            return sumMiddleItems(wrongUpdates);
+            return orderList(wrongUpdates);
+            //return sumMiddleItems(wrongUpdates);
         }
 
         // Returns the sum of the middle elements of the given list
@@ -53,12 +52,13 @@ namespace _5_dec
 
         // Takes the total list 'updates', puts that into the 'correctUpdates' list and removes all incorrect updates.
         // Then is returns the list with only the correct updates.
-        static List<List<int>> getCorrectUpdates()
+        static int getCorrectUpdates()
         {
-            List<List<int>> correctUpdates = updates;
+            List<List<int>> correctUpdates = new List<List<int>>(updates);
+            int sum = 0;
             for (int i = 0; i < correctUpdates.Count; i++)
             {
-                for (int j = 0; j < order.GetLength(0); j++)
+                for (int j = 0; j < order.GetLength(0) ; j++)
                 {
                     if (correctUpdates[i].Contains(order[j, 0]) && correctUpdates[i].Contains(order[j, 1]))
                     {
@@ -67,11 +67,17 @@ namespace _5_dec
                         {
                             correctUpdates.RemoveAt(i);
                             i--;
+                            break;
                         }
                     }
                 }
             }
-            return correctUpdates;
+            foreach (List<int> row in correctUpdates)
+            {
+
+                sum += row[row.Count / 2];
+            }
+            return sum;
         }
 
         // Takes the 'updates' lists, check when a rule fails and then adds that update to the incorrect list.
@@ -83,9 +89,11 @@ namespace _5_dec
             {
                 for (int j = 0; j < order.GetLength(0); j++)
                 {
-                    if (updates[i].Contains(order[j, 0]) && updates[i].Contains(order[j, 1]))
+                    int leftOrder = order[j, 0];
+                    int rightOrder = order[j, 1];
+                    if (updates[i].Contains(leftOrder) && updates[i].Contains(rightOrder))
                     {
-                        if (updates[i].IndexOf(order[j, 0]) > updates[i].IndexOf(order[j, 1]))
+                        if (updates[i].IndexOf(leftOrder) > updates[i].IndexOf(rightOrder))
                         {
                             wrongUpdates.Add(updates[i]);
                             break;
@@ -99,14 +107,15 @@ namespace _5_dec
         // Takes a list and swaps numbers according to the order-list.
         // It keeps swapping until all order-rules are happy and one iteration is performed without swaps.
         // Then it returns the now-ordered list.
-        static List<List<int>> orderList(List<List<int>> unorderedList)
+        static int orderList(List<List<int>> unorderedList)
         {
+            int sum = 0;
             for (int i = 0; i < unorderedList.Count; i++)
             {
                 bool correctOrder = false;
                 while (!correctOrder)
                 {
-                    int swaps = 0;
+                    bool swaps = false;
                     for (int j = 0; j < order.GetLength(0); j++)
                     {
                         if (unorderedList[i].Contains(order[j, 0]) && unorderedList[i].Contains(order[j, 1]))
@@ -118,20 +127,19 @@ namespace _5_dec
                             {
                                 unorderedList[i][rightIndex] = order[j, 0];
                                 unorderedList[i][leftIndex] = order[j, 1];
-                                swaps++;
-                            }
-                            else // 
-                            {
+                                swaps = true;
                             }
                         }
                     }
-                    if (swaps == 0)
+                    if (!swaps)
                     {
                         correctOrder = true;
+                        sum += unorderedList[i][unorderedList[i].Count / 2];
+                        break;
                     }
                 }
             }
-            return unorderedList; // Now it is ordered though.
+            return sum;
         }
 
         // Reads the input files and puts the input order into an int[,] and the updates into a List<List<int>>
@@ -140,56 +148,32 @@ namespace _5_dec
             String line;
             try
             {
-                List<string> lines = new List<string>();
                 //Pass the file path and file name to the StreamReader constructor
-                StreamReader sr = new StreamReader("C:\\Users\\Robin\\Documents\\GitHub\\AdventOfCode2024\\5 dec\\order.txt");
+                StreamReader sr = new StreamReader("C:\\Users\\Robin\\Documents\\GitHub\\AdventOfCode2024\\5 dec\\input.txt");
+                bool parsingRules = true;
+                int i = 0;
                 //Read the first line of text
                 line = sr.ReadLine();
                 //Continue to read until you reach end of file
                 while (line != null)
                 {
-                    lines.Add(line);
-                    //Read the next line
-                    line = sr.ReadLine();
-                }
-                //close the file
-                sr.Close();
-                order = new int[lines.Count, 2];
-                for (int i = 0; i < lines.Count; i++)
-                {
-                    order[i, 0] = int.Parse(lines[i].Split('|')[0]);
-                    order[i, 1] = int.Parse(lines[i].Split('|')[1]);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception: " + e.Message);
-            }
-            try
-            {
-                List<string> lines = new List<string>();
-                //Pass the file path and file name to the StreamReader constructor
-                StreamReader sr = new StreamReader("C:\\Users\\Robin\\Documents\\GitHub\\AdventOfCode2024\\5 dec\\update.txt");
-                //Read the first line of text
-                line = sr.ReadLine();
-                //Continue to read until you reach end of file
-                while (line != null)
-                {
-                    //write the line to console window
-                    lines.Add(line);
-                    //Read the next line
-                    line = sr.ReadLine();
-                }
-                //close the file
-                sr.Close();
-                for (int i = 0; i < lines.Count; i++)
-                {
-                    string[] tmp = lines[i].Split(',');
-                    updates.Add(new List<int>());
-                    foreach (string letter in tmp)
+                    if (parsingRules && string.IsNullOrWhiteSpace(line))
                     {
-                        updates[i].Add(int.Parse(letter));
+                        parsingRules = false;
+                        line = sr.ReadLine();
                     }
+                    else if (parsingRules)
+                    {
+                        order[i, 0] = int.Parse(line.Split('|')[0]);
+                        order[i, 1] = int.Parse(line.Split('|')[1]);
+                        i++;
+                    }
+                    else
+                    {
+                        updates.Add(line.Split(',').Select(int.Parse).ToList());
+                    }
+                    //Read the next line
+                    line = sr.ReadLine();
                 }
             }
             catch (Exception e)
